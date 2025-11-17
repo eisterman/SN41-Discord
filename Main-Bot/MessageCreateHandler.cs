@@ -11,7 +11,7 @@ public class MessageCreateHandler(IOptions<SN41Settings> settings, ILogger<Messa
     : IMessageCreateGatewayHandler {
     public ValueTask HandleAsync(Message message) {
         logger.LogInformation("{}", message.Content);
-        logger.LogInformation("Setted: {}", String.Format(settings.Value.WelcomeMessage.Body, message.Author.Username));
+        logger.LogInformation("Setted: {}", string.Format(settings.Value.WelcomeMessage.Body, message.Author.Username));
         return default;
     }
 }

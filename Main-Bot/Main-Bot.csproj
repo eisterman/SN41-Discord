@@ -24,9 +24,7 @@
 
     <ItemGroup>
         <None Remove="welcome.png"/>
-        <EmbeddedResource Include="welcome.png">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </EmbeddedResource>
+        <EmbeddedResource Include="welcome.png"/>
     </ItemGroup>
 
 </Project>

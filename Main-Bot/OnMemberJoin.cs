@@ -18,7 +18,7 @@ public class OnMemberJoin(IOptions<SN41Settings> settings) : IGuildUserAddGatewa
     public async ValueTask HandleAsync(GuildUser guildUser) {
         await using var file = GetImageStream();
         var image = new AttachmentProperties("image.png", file);
-        var body = String.Format(settings.Value.WelcomeMessage.Body, guildUser.Username);
+        var body = string.Format(settings.Value.WelcomeMessage.Body, guildUser.Username);
         var embed = new EmbedProperties()
             .WithDescription(body)
             .WithColor(new(0xF1C40F))
