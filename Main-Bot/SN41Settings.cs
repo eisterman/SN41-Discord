@@ -1,13 +1,35 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.Extensions.Options;
+
 // ReSharper disable ClassNeverInstantiated.Global
 
 namespace Main_Bot;
 
 public record SN41Settings {
-    [Required] [ValidateObjectMembers] public required WelcomeMsgSettings WelcomeMessage { get; init; }
+    [Required] [ValidateObjectMembers] public required WelcomeMsgFeatureSettings WelcomeMsgFeature { get; init; }
+
+    [Required]
+    [ValidateObjectMembers]
+    public required DuplicateVoiceChannelFeatureSettings DuplicateVoiceChannelFeature { get; init; }
+
+    [Required] [ValidateObjectMembers] public required AssignRolesFeatureSettings AssignRolesFeature { get; init; }
+    [Required] [ValidateObjectMembers] public required GoodByeFeatureSettings GoodByeFeature { get; init; }
+    [Required] public required string RenderReplayApiKey { get; init; }
+    [Required] public required List<string> AdminRoles { get; init; }
 }
 
-public record WelcomeMsgSettings {
+public record WelcomeMsgFeatureSettings {
     [Required] public required string Body { get; init; }
+}
+
+public record DuplicateVoiceChannelFeatureSettings {
+    [Required] public required string OriginalChannelId { get; init; }
+}
+
+public record AssignRolesFeatureSettings {
+    [Required] public required string TextChannelId { get; init; }
+}
+
+public record GoodByeFeatureSettings {
+    [Required] public required string TextChannelId { get; init; }
 }
