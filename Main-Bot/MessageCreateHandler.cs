@@ -7,7 +7,7 @@ using Microsoft.Extensions.Options;
 namespace Main_Bot;
 
 [UsedImplicitly]
-public class MessageCreateHandler(IOptions<SN41Settings> settings, ILogger<MessageCreateHandler> logger)
+public sealed class MessageCreateHandler(IOptions<SN41Settings> settings, ILogger<MessageCreateHandler> logger)
     : IMessageCreateGatewayHandler {
     public ValueTask HandleAsync(Message message) {
         logger.LogInformation("{}", message.Content);

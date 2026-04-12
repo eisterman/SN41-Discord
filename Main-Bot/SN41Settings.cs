@@ -23,13 +23,13 @@ public record WelcomeMsgFeatureSettings {
 }
 
 public record DuplicateVoiceChannelFeatureSettings {
-    [Required] public required string OriginalChannelId { get; init; }
+    [Required] public required ulong OriginalChannelId { get; init; }
 }
 
 public record AssignRolesFeatureSettings {
-    [Required] public required string TextChannelId { get; init; }
+    [Required] public required ulong TextChannelId { get; init; }
 }
 
 public record GoodByeFeatureSettings {
-    [Required] public required string TextChannelId { get; init; }
+    [Required] public required ulong TextChannelId { get; init; }
 }

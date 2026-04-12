@@ -25,6 +25,8 @@
     <ItemGroup>
         <None Remove="welcome.png"/>
         <EmbeddedResource Include="welcome.png"/>
+        <None Remove="goodbye_phrases.txt"/>
+        <EmbeddedResource Include="goodbye_phrases.txt"/>
     </ItemGroup>
 
 </Project>
