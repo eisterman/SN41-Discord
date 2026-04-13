@@ -10,15 +10,15 @@ namespace Main_Bot;
 [UsedImplicitly]
 public sealed class OnMemberRemove(
     IOptions<GoodByeFeatureSettings> settings,
-    ILogger<MessageCreateHandler> logger,
-    GoodByePhrasesProvider goodByePhrasesProvider,
+    ILogger<OnMemberRemove> logger,
+    IGoodByePhrasesProvider goodByePhrasesAssemblyProvider,
     RestClient restClient
 ) : IGuildUserRemoveGatewayHandler {
     public async ValueTask HandleAsync(GuildUserRemoveEventArgs arg) {
         var username = arg.User.GlobalName ?? arg.User.Username;
         logger.LogInformation("Member {} leaved the server", username);
         var message = new MessageProperties();
-        message.WithContent(goodByePhrasesProvider.GetRandomPhrase(username));
+        message.WithContent(goodByePhrasesAssemblyProvider.GetRandomPhrase(username));
         await restClient.SendMessageAsync(settings.Value.TextChannelId, message);
     }
 }

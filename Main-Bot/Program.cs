@@ -15,7 +15,7 @@ builder.Services
     .ValidateDataAnnotations()
     .ValidateOnStart();
 
-builder.Services.AddSingleton<GoodByePhrasesProvider>();
+builder.Services.AddSingleton<IGoodByePhrasesProvider, GoodByePhrasesAssemblyProvider>();
 
 builder.Services
     .AddDiscordGateway(options => { options.Intents = GatewayIntents.All; })

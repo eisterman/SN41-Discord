@@ -2,11 +2,11 @@ using System.Reflection;
 
 namespace Main_Bot;
 
-public sealed class GoodByePhrasesProvider {
+public sealed class GoodByePhrasesAssemblyProvider : IGoodByePhrasesProvider {
     private static readonly Random Random = new();
     private List<string> Phrases { get; }
 
-    public GoodByePhrasesProvider() {
+    public GoodByePhrasesAssemblyProvider() {
         var assembly = Assembly.GetExecutingAssembly();
         using var stream = assembly.GetManifestResourceStream("Main_Bot.goodbye_phrases.txt") ??
                            throw new InvalidOperationException("Missing welcome.png inside assembly resources");
