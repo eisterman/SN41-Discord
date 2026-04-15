@@ -14,6 +14,7 @@ public record SN41Settings {
 
     [Required] [ValidateObjectMembers] public required AssignRolesFeatureSettings AssignRolesFeature { get; init; }
     [Required] [ValidateObjectMembers] public required GoodByeFeatureSettings GoodByeFeature { get; init; }
+    [Required] [ValidateObjectMembers] public required AntiSpamFeatureSettings AntiSpamFeature { get; init; }
     [Required] public required string RenderReplayApiKey { get; init; }
     [Required] public required List<string> AdminRoles { get; init; }
 }
@@ -32,4 +33,8 @@ public record AssignRolesFeatureSettings {
 
 public record GoodByeFeatureSettings {
     [Required] public required ulong TextChannelId { get; init; }
+}
+
+public record AntiSpamFeatureSettings {
+    [Required] public required string DeleteMessageContent { get; init; }
 }
