@@ -9,7 +9,7 @@ namespace Main_Bot;
 
 [UsedImplicitly]
 public sealed class OnMemberRemove(
-    IOptions<GoodByeFeatureSettings> settings,
+    IOptions<AdminFeatureSettings> settings,
     ILogger<OnMemberRemove> logger,
     IGoodByePhrasesProvider goodByePhrasesAssemblyProvider,
     RestClient restClient
@@ -19,6 +19,6 @@ public sealed class OnMemberRemove(
         logger.LogInformation("Member {} leaved the server", username);
         var message = new MessageProperties();
         message.WithContent(goodByePhrasesAssemblyProvider.GetRandomPhrase(username));
-        await restClient.SendMessageAsync(settings.Value.TextChannelId, message);
+        await restClient.SendMessageAsync(settings.Value.AdminLogTextChannelId, message);
     }
 }

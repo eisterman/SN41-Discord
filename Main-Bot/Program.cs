@@ -1,4 +1,5 @@
 ﻿using Main_Bot;
+using Main_Bot.Features;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NetCord.Gateway;
@@ -15,7 +16,9 @@ builder.Services
     .ValidateDataAnnotations()
     .ValidateOnStart();
 
-builder.Services.AddSingleton<IGoodByePhrasesProvider, GoodByePhrasesAssemblyProvider>();
+builder.Services
+    .AddSingleton<IGoodByePhrasesProvider, GoodByePhrasesAssemblyProvider>()
+    .AddSingleton<AntiSpamLogicSingleton>();
 
 builder.Services
     .AddDiscordGateway(options => { options.Intents = GatewayIntents.All; })

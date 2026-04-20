@@ -20,15 +20,14 @@ public class MsgEntry {
     public required List<Message> Messages { get; set; }
 }
 
-// IMessageCreateGatewayHandler
-
 public class AntiSpamLogicSingleton(
     IOptions<SN41Settings> settings,
-    ILogger<AntiSpamLogicSingleton> logger
+    ILogger<AntiSpamLogicSingleton> logger,
+    RestClient restClient
 ) {
-    private Dictionary<ulong, MsgEntry> _msgEntries = new();
+    private readonly Dictionary<ulong, MsgEntry> _msgEntries = new();
 
-    public async Task<ProcessMessageResult> ProcessMessage(Message msg) {
+    public async ValueTask<ProcessMessageResult> ProcessMessage(Message msg) {
         // TODO: Split in different rules customizable at runtime?
         // Accept Bot and outside-guild messages
         if (msg.Author.IsBot || msg.Guild == null) return ProcessMessageResult.Accepted;
@@ -80,7 +79,10 @@ public class AntiSpamLogicSingleton(
                 // Over the limit, apply timeout and notify the admins
                 if (entry.Quantity >= 3) {
                     await guildUser.TimeOutAsync(now + TimeSpan.FromMinutes(5));
-                    // TODO: Send message to ex DISCORD_ADMIN_LOG_CHANNEL
+                    var notifMsg = new MessageProperties {
+                        Content = $"User {msg.Author.Username} timeouted for repeated msg:\n{msg.Content}"
+                    };
+                    await restClient.SendMessageAsync(settings.Value.AdminFeature.AdminLogTextChannelId, notifMsg);
                 }
                 return ProcessMessageResult.Rejected;
             }
