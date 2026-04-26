@@ -1,11 +1,11 @@
 using System.Reflection;
-using NetCord.Hosting.Gateway;
-using NetCord.Rest;
 using JetBrains.Annotations;
 using Microsoft.Extensions.Options;
 using NetCord;
+using NetCord.Hosting.Gateway;
+using NetCord.Rest;
 
-namespace Main_Bot;
+namespace Main_Bot.Gateways;
 
 [UsedImplicitly]
 public sealed class OnMemberJoin(IOptions<SN41Settings> settings) : IGuildUserAddGatewayHandler {

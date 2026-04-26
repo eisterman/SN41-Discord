@@ -6,7 +6,7 @@ using NetCord.Gateway;
 using NetCord.Hosting.Gateway;
 using NetCord.Rest;
 
-namespace Main_Bot;
+namespace Main_Bot.Gateways;
 
 [UsedImplicitly]
 public sealed class OnMemberRemove(
