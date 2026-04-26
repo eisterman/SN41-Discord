@@ -9,9 +9,9 @@ using NetCord.Rest;
 namespace Main_Bot.Gateways;
 
 [UsedImplicitly]
-public sealed class OnMemberRemove(
+public sealed class OnMemberGuildRemove(
     IOptions<AdminFeatureSettings> settings,
-    ILogger<OnMemberRemove> logger,
+    ILogger<OnMemberGuildRemove> logger,
     IGoodByePhrasesProvider goodByePhrasesAssemblyProvider,
     RestClient restClient
 ) : IGuildUserRemoveGatewayHandler {

@@ -8,7 +8,7 @@ using NetCord.Rest;
 namespace Main_Bot.Gateways;
 
 [UsedImplicitly]
-public sealed class OnMemberJoin(IOptions<SN41Settings> settings) : IGuildUserAddGatewayHandler {
+public sealed class OnMemberGuildJoin(IOptions<SN41Settings> settings) : IGuildUserAddGatewayHandler {
     // Here I chose to read from the assembly every time, but it's not the most scalable
     // solution. The best solution would be moving the resource in a singleton.
     // Singletons are simple but lazy, while IHostedServices are more complex but not lazy.
