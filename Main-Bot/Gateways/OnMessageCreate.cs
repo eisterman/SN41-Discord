@@ -6,7 +6,7 @@ using NetCord.Hosting.Gateway;
 namespace Main_Bot.Gateways;
 
 [UsedImplicitly]
-public class MessageCreate(
+public class OnMessageCreate(
     AntiSpamLogicSingleton antiSpamLogicSingleton
 ) : IMessageCreateGatewayHandler {
     public async ValueTask HandleAsync(Message arg) {

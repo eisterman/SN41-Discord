@@ -1,5 +1,6 @@
 ﻿using Main_Bot;
 using Main_Bot.Features;
+using Main_Bot.Features.GoodByePhrases;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NetCord.Gateway;

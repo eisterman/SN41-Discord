@@ -1,4 +1,5 @@
 using JetBrains.Annotations;
+using Main_Bot.Features.GoodByePhrases;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using NetCord.Gateway;

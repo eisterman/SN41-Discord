@@ -1,6 +1,6 @@
 using System.Reflection;
 
-namespace Main_Bot;
+namespace Main_Bot.Features.GoodByePhrases;
 
 public sealed class GoodByePhrasesAssemblyProvider : IGoodByePhrasesProvider {
     private static readonly Random Random = new();
