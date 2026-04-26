@@ -3,8 +3,11 @@ using Main_Bot.Features;
 using Main_Bot.Features.GoodByePhrases;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Http;
 using NetCord.Gateway;
 using NetCord.Hosting.Gateway;
+using NetCord.Hosting.Services;
+using NetCord.Hosting.Services.ApplicationCommands;
 
 var builder = Host.CreateApplicationBuilder(args);
 
@@ -22,9 +25,16 @@ builder.Services
     .AddSingleton<AntiSpamLogicSingleton>();
 
 builder.Services
+    .AddHttpClient()
     .AddDiscordGateway(options => { options.Intents = GatewayIntents.All; })
+    .AddApplicationCommands()
     .AddGatewayHandlers(typeof(Program).Assembly);
 
 var host = builder.Build();
+
+// Add application commands from CommandModule
+// The modules behave as if they were transient services, so they are created for each command/interaction,
+// but you can use classic Dependency Injection in them.
+host.AddModules(typeof(Program).Assembly);
 
 await host.RunAsync();

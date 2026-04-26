@@ -7,7 +7,7 @@ Checked items = done. Unchecked items = to implement.
 
 ## Environment & Configuration
 
-- [ ] Read the following values from environment variables at startup:
+- [x] Read the following values from environment variables at startup:
   - `DISCORD_BOT_SECRET_KEY` — bot authentication token
   - `DISCORD_DUPLICATE_VOICE_CHANNEL` — ID of the voice channel that triggers cloning
   - `DISCORD_GENERAL_TEXT_CHANNEL` — ID of the text channel for goodbye messages
@@ -19,10 +19,22 @@ Checked items = done. Unchecked items = to implement.
 
 ## Admin Roles
 
-- [ ] Treat the following role names as admin roles (hardcoded):
+- [x] Treat the following role names as admin roles (hardcoded):
   `ADEPTUS MECHANICUS`, `AMMIRAGLIO`, `RECLUTATORE [SN41]`, `COMMODORO`, `BOT`
-- [ ] Any check for "is this user an admin?" means: does the user hold at least one of
+- [x] Any check for "is this user an admin?" means: does the user hold at least one of
   those roles.
+
+---
+
+# Features
+
+- [x] Feature 1 — Welcome New Members
+- [x] Feature 2 — Goodbye Messages
+- [ ] Feature 3 — Role Assignment UI
+- [ ] Feature 4 — Temporary Voice Channels
+- [x] Feature 5 — Anti-Spam
+- [x] Feature 6 — Replay Rendering (`/replay`)
+- [ ] Feature 7 — Command Sync (`!sync_commands_here`)
 
 ---
 
@@ -30,7 +42,7 @@ Checked items = done. Unchecked items = to implement.
 
 **Trigger:** A user joins the guild.
 
-- [ ] Send the new member a **direct message** containing:
+- [x] Send the new member a **direct message** containing:
   - A welcome image (`discord_msg_img.png`)
   - The following text (Italian, keep as-is):
     ```
@@ -50,9 +62,9 @@ Checked items = done. Unchecked items = to implement.
 
 **Trigger:** A user leaves the guild.
 
-- [ ] Pick a random line from `goodbye_phrases.txt`.
-- [ ] Replace the `{}` placeholder in that line with the member's name.
-- [ ] Post the result in `DISCORD_GENERAL_TEXT_CHANNEL`.
+- [x] Pick a random line from `goodbye_phrases.txt`.
+- [x] Replace the `{}` placeholder in that line with the member's name.
+- [x] Post the result in `DISCORD_GENERAL_TEXT_CHANNEL`.
 
 ### goodbye_phrases.txt
 
@@ -151,20 +163,20 @@ One specific voice channel (`DISCORD_DUPLICATE_VOICE_CHANNEL`) acts as a permane
 
 **Trigger:** Any message posted in the guild.
 
-- [ ] Ignore messages from bots.
-- [ ] Ignore messages from admins.
-- [ ] Ignore messages shorter than **10 characters**.
-- [ ] For every other message, track per-user state:
+- [x] Ignore messages from bots.
+- [x] Ignore messages from admins.
+- [x] Ignore messages shorter than **10 characters**.
+- [x] For every other message, track per-user state:
   - The hash of their last seen message content (use MD5 or equivalent)
   - The timestamp of the first occurrence
   - How many times it has been repeated
   - References to the messages themselves (for deletion)
-- [ ] **Time window:** if the same user sends a message more than **1 minute** after their
+- [x] **Time window:** if the same user sends a message more than **1 minute** after their
   last tracked message, reset the tracking state.
-- [ ] **Different message:** if the user's new message has a different hash than the tracked
+- [x] **Different message:** if the user's new message has a different hash than the tracked
   one, reset the state.
-- [ ] **Same message repeated (2nd occurrence):** begin accumulating — no action yet.
-- [ ] **Same message repeated (3rd occurrence):**
+- [x] **Same message repeated (2nd occurrence):** begin accumulating — no action yet.
+- [x] **Same message repeated (3rd occurrence):**
   - Delete all accumulated copies (including the current one).
   - Send the user a DM (Italian, keep as-is):
     ```
@@ -175,7 +187,7 @@ One specific voice channel (`DISCORD_DUPLICATE_VOICE_CHANNEL`) acts as a permane
     In caso di domande o falsi positivi, contattare @eisterman
     ```
   - If the DM cannot be delivered, log the failure and continue.
-- [ ] **Same message repeated (4th occurrence and beyond):**
+- [x] **Same message repeated (4th occurrence and beyond):**
   - Apply a **5-minute timeout** to the user (reason: `"Spamming"`).
   - Notify `DISCORD_ADMIN_LOG_CHANNEL`.
 
@@ -183,21 +195,21 @@ One specific voice channel (`DISCORD_DUPLICATE_VOICE_CHANNEL`) acts as a permane
 
 ## Feature 6 — Replay Rendering (`/replay`)
 
-- [ ] Global slash command `/replay` with one required parameter: a file attachment.
-- [ ] Reject attachments whose filename does not end in `.wowsreplay`.
-- [ ] Show a loading/thinking indicator while processing (rendering can take several minutes).
-- [ ] Upload the file to the render API:
+- [x] Global slash command `/replay` with one required parameter: a file attachment.
+- [x] Reject attachments whose filename does not end in `.wowsreplay`.
+- [x] Show a loading/thinking indicator while processing (rendering can take several minutes).
+- [x] Upload the file to the render API:
   - `POST https://renderapi.sn41.eisterman.dev/api/render`
   - Header: `X-API-KEY: <RENDER_API_KEY>`
   - Body: multipart form with the file
-- [ ] The API responds with JSON:
+- [x] The API responds with JSON:
   ```json
   { "video_url": "/api/render/output/<uuid>.mp4", "metadata": { "filename": "…" } }
   ```
-- [ ] Download the video from `https://renderapi.sn41.eisterman.dev<video_url>`.
-- [ ] Send the video file back to the user in Discord, together with an embed showing the
+- [x] Download the video from `https://renderapi.sn41.eisterman.dev<video_url>`.
+- [x] Send the video file back to the user in Discord, together with an embed showing the
   original filename from `metadata.filename`.
-- [ ] On any error, respond with: `"ERRORE! Urla a Fede di tornare in miniera"`
+- [x] On any error, respond with: `"ERRORE! Urla a Fede di tornare in miniera"`
 
 ---
 

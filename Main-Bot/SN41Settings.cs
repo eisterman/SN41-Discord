@@ -12,11 +12,17 @@ public record SN41Settings {
     [ValidateObjectMembers]
     public required DuplicateVoiceChannelFeatureSettings DuplicateVoiceChannelFeature { get; init; }
 
+    [Required] [ValidateObjectMembers] public required RenderReplayFeatureSettings RenderReplayFeature { get; init; }
     [Required] [ValidateObjectMembers] public required AssignRolesFeatureSettings AssignRolesFeature { get; init; }
     [Required] [ValidateObjectMembers] public required AdminFeatureSettings AdminFeature { get; init; }
     [Required] [ValidateObjectMembers] public required AntiSpamFeatureSettings AntiSpamFeature { get; init; }
     [Required] public required string RenderReplayApiKey { get; init; }
     [Required] public required List<string> AdminRoles { get; init; }
+}
+
+public record RenderReplayFeatureSettings {
+    [Required] public required string ApiKey { get; init; }
+    [Required] public required string BaseApiUrl { get; init; }
 }
 
 public record WelcomeMsgFeatureSettings {
