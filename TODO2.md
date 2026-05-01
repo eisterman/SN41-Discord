@@ -34,7 +34,6 @@ Checked items = done. Unchecked items = to implement.
 - [ ] Feature 4 — Temporary Voice Channels
 - [x] Feature 5 — Anti-Spam
 - [x] Feature 6 — Replay Rendering (`/replay`)
-- [ ] Feature 7 — Command Sync (`!sync_commands_here`)
 
 ---
 
@@ -210,17 +209,6 @@ One specific voice channel (`DISCORD_DUPLICATE_VOICE_CHANNEL`) acts as a permane
 - [x] Send the video file back to the user in Discord, together with an embed showing the
   original filename from `metadata.filename`.
 - [x] On any error, respond with: `"ERRORE! Urla a Fede di tornare in miniera"`
-
----
-
-## Feature 7 — Command Sync (`!sync_commands_here`)
-
-- [ ] Prefix-based text command `!sync_commands_here` (not a slash command).
-- [ ] Restricted to users with the `ADEPTUS MECHANICUS` role.
-- [ ] Copies all globally registered slash commands to the current guild and syncs them.
-- [ ] Replies with a confirmation message.
-- [ ] Purpose: used during development/deployment to make slash commands available in the
-  server without waiting for global propagation.
 
 ---
 

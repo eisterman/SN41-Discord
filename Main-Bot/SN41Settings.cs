@@ -6,18 +6,35 @@ using Microsoft.Extensions.Options;
 namespace Main_Bot;
 
 public record SN41Settings {
+    [Required]
+    [ValidateObjectMembers]
+    public required GoodByePhrasesFeatureSettings GoodByePhrasesFeature { get; init; }
+
     [Required] [ValidateObjectMembers] public required WelcomeMsgFeatureSettings WelcomeMsgFeature { get; init; }
 
     [Required]
     [ValidateObjectMembers]
     public required DuplicateVoiceChannelFeatureSettings DuplicateVoiceChannelFeature { get; init; }
 
+    [Required]
+    [ValidateObjectMembers]
+    public required RoleAssignmentFeatureSettings RoleAssignmentFeature { get; init; }
+
     [Required] [ValidateObjectMembers] public required RenderReplayFeatureSettings RenderReplayFeature { get; init; }
     [Required] [ValidateObjectMembers] public required AssignRolesFeatureSettings AssignRolesFeature { get; init; }
     [Required] [ValidateObjectMembers] public required AdminFeatureSettings AdminFeature { get; init; }
     [Required] [ValidateObjectMembers] public required AntiSpamFeatureSettings AntiSpamFeature { get; init; }
-    [Required] public required string RenderReplayApiKey { get; init; }
     [Required] public required List<string> AdminRoles { get; init; }
+}
+
+public record GoodByePhrasesFeatureSettings {
+    [Required] public required ulong GoodByeChannelId { get; init; }
+}
+
+public record RoleAssignmentFeatureSettings {
+    [Required] public required string CommunityRoleName { get; init; }
+    [Required] public required string GuestsRoleName { get; init; }
+    [Required] public required List<string> ClanRoleNames { get; init; }
 }
 
 public record RenderReplayFeatureSettings {

@@ -10,7 +10,7 @@ namespace Main_Bot.Gateways;
 
 [UsedImplicitly]
 public sealed class OnMemberGuildRemove(
-    IOptions<AdminFeatureSettings> settings,
+    IOptions<GoodByePhrasesFeatureSettings> settings,
     ILogger<OnMemberGuildRemove> logger,
     IGoodByePhrasesProvider goodByePhrasesAssemblyProvider,
     RestClient restClient
@@ -20,6 +20,6 @@ public sealed class OnMemberGuildRemove(
         logger.LogInformation("Member {} leaved the server", username);
         var message = new MessageProperties();
         message.WithContent(goodByePhrasesAssemblyProvider.GetRandomPhrase(username));
-        await restClient.SendMessageAsync(settings.Value.AdminLogTextChannelId, message);
+        await restClient.SendMessageAsync(settings.Value.GoodByeChannelId, message);
     }
 }

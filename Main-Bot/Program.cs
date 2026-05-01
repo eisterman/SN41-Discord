@@ -3,7 +3,6 @@ using Main_Bot.Features;
 using Main_Bot.Features.GoodByePhrases;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Http;
 using NetCord.Gateway;
 using NetCord.Hosting.Gateway;
 using NetCord.Hosting.Services;
@@ -32,7 +31,7 @@ builder.Services
 
 var host = builder.Build();
 
-// Add application commands from CommandModule
+// Add application commands and component interaction from Modules
 // The modules behave as if they were transient services, so they are created for each command/interaction,
 // but you can use classic Dependency Injection in them.
 host.AddModules(typeof(Program).Assembly);

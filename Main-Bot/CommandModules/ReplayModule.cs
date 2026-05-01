@@ -40,7 +40,7 @@ public class ReplayModule(
 ) : ApplicationCommandModule<ApplicationCommandContext> {
     [UsedImplicitly]
     [SlashCommand("replay", "Crea un nuovo replay")]
-    public async ValueTask Replay(
+    public async Task Replay(
         [SlashCommandParameter(Description = "File .wowsreplay da renderizzare")]
         Attachment attachment
     ) {
