@@ -1,8 +1,8 @@
 using System.Security.Cryptography;
 using System.Text;
+using Main_Bot.Extensions;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using NetCord;
 using NetCord.Gateway;
 using NetCord.Rest;
 
@@ -34,8 +34,7 @@ public class AntiSpamLogicSingleton(
 
         // Accept admin messages
         var guildUser = await msg.Guild.GetUserAsync(msg.Author.Id);
-        var guildUserRoles = guildUser.GetRoles(msg.Guild).Select((role => role.Name));
-        if (guildUserRoles.Any(settings.Value.AdminRoles.Contains)) return ProcessMessageResult.Accepted;
+        if (guildUser.HasRoleName(msg.Guild, settings.Value.AdminRoles)) return ProcessMessageResult.Accepted;
 
         // Accept messages shorter than 10 chars
         if (msg.Content.Length < 10) return ProcessMessageResult.Accepted;
